@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FAFAF7"/>
+      <stop offset="1" stop-color="#FCFBF7"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C6A75E"/>
+      <stop offset="1" stop-color="#C6A75E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="950" cy="260" r="240" fill="#4B2A73" opacity="0.08"/>
+  <circle cx="260" cy="420" r="320" fill="#C6A75E" opacity="0.08"/>
+  <text x="90" y="250" font-family="Playfair Display, serif" font-size="76" fill="#191614" font-weight="700">
+    OrnaSpa
+  </text>
+  <text x="90" y="320" font-family="Inter, sans-serif" font-size="34" fill="#6A6258" font-weight="600">
+    Luxury Jewellery Care at Your Doorstep
+  </text>
+  <rect x="90" y="360" width="420" height="56" rx="18" fill="url(#gold)" opacity="0.95"/>
+  <text x="118" y="399" font-family="Inter, sans-serif" font-size="22" fill="#191614" font-weight="800">
+    Professional &amp; Secure Handling
+  </text>
+  <g transform="translate(760 170)">
+    <path d="M40 90L140 20l100 70-55 160H95L40 90z" fill="#4B2A73" opacity="0.9"/>
+    <path d="M40 90h200l-55 160H95L40 90z" fill="url(#gold)" opacity="0.18"/>
+    <path d="M85 100l55-40 55 40-55 130-55-130z" fill="#C6A75E" opacity="0.35"/>
+  </g>
+</svg>
