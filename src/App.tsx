@@ -184,11 +184,13 @@ function Button({
   onClick,
   variant = 'primary',
   href,
+  className,
 }: {
   children: ReactNode;
   onClick?: () => void;
   variant?: 'primary' | 'secondary';
   href?: string;
+  className?: string;
 }) {
   const base =
     'inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-extrabold tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg';
@@ -200,14 +202,14 @@ function Button({
 
   if (href && href.trim().length > 0) {
     return (
-      <a className={cx(base, styles)} href={href} target="_blank" rel="noreferrer">
+      <a className={cx(base, styles, className)} href={href} target="_blank" rel="noreferrer">
         {children}
       </a>
     );
   }
   return (
     <button
-      className={cx(base, styles, disabled && 'cursor-not-allowed opacity-60')}
+      className={cx(base, styles, className, disabled && 'cursor-not-allowed opacity-60')}
       onClick={onClick}
       type="button"
       disabled={disabled}
