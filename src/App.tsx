@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 
 type NavItem = { id: string; label: string };
 
@@ -6,7 +6,7 @@ const CONFIG = {
   brandName: 'OrnaSpa',
   appStoreUrl: '',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ornaspa.mobile&pcampaignid=web_share',
-  supportEmail: 'support@ornaspa.com',
+  supportEmail: 'ornaspa@gmail.com',
   coverageCity: 'Gurugram',
   promoCode: 'SPARKLE15',
   outletAddressLine1: 'Shop No. 25, Ground Floor, Spaze Corporate Park',
@@ -151,11 +151,67 @@ function cx(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(' ');
 }
 
+function prefersReducedMotion() {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+}
+
+function easeInOutCubic(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
 function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
   const y = el.getBoundingClientRect().top + window.scrollY - 88;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+
+  if (prefersReducedMotion()) {
+    window.scrollTo(0, y);
+    return;
+  }
+
+  const start = window.scrollY;
+  const distance = y - start;
+  const duration = 600;
+  let startTime: number | null = null;
+
+  function step(timestamp: number) {
+    if (startTime === null) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    if (progress < 1) requestAnimationFrame(step);
+  }
+
+  requestAnimationFrame(step);
+}
+
+function useReveal<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [revealed, setRevealed] = useState(() => prefersReducedMotion());
+
+  useEffect(() => {
+    if (revealed) return;
+    const el = ref.current;
+    if (!el) return;
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return { ref, revealed } as const;
 }
 
 function useActiveSection(sectionIds: string[]) {
@@ -202,11 +258,11 @@ function Button({
   className?: string;
 }) {
   const base =
-    'inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-extrabold tracking-wide transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg';
+    'inline-flex items-center justify-center rounded-2xl px-5 py-3 text-sm font-extrabold tracking-wide transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/60 focus-visible:ring-offset-2 focus-visible:ring-offset-bg';
   const styles =
     variant === 'primary'
-      ? 'bg-gold text-text shadow-soft hover:shadow-lift'
-      : 'border border-divider bg-surface text-text hover:border-gold/50 shadow-soft';
+      ? 'bg-gold text-text shadow-soft hover:-translate-y-px hover:shadow-[0_10px_26px_-10px_rgba(198,167,94,0.5)]'
+      : 'border border-divider bg-surface text-text shadow-soft hover:-translate-y-px hover:border-gold/50 hover:shadow-[0_8px_20px_-10px_rgba(198,167,94,0.28)]';
   const disabled = (!href || href.trim().length === 0) && !onClick;
 
   if (href && href.trim().length > 0) {
@@ -243,7 +299,7 @@ function SectionHeader({
   return (
     <div className={cx(align === 'center' && 'text-center')}>
       <div className="flex items-center gap-3 mb-4 justify-center md:justify-start">
-        <div className="h-px w-8 bg-gold/40" />
+        <div className="h-px w-0 origin-left bg-gold/40 transition-[width] duration-700 ease-out group-data-[revealed=true]:w-8" />
         <div className="text-xs font-black uppercase tracking-[0.3em] text-gold/80">
           {eyebrow}
         </div>
@@ -255,6 +311,32 @@ function SectionHeader({
         {subtitle}
       </p>
     </div>
+  );
+}
+
+function Reveal({
+  id,
+  className,
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  const { ref, revealed } = useReveal<HTMLElement>();
+  return (
+    <section
+      id={id}
+      ref={ref}
+      data-revealed={revealed ? 'true' : 'false'}
+      className={cx(
+        'group transition-[opacity,transform] duration-[600ms] ease-out',
+        revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3',
+        className,
+      )}
+    >
+      {children}
+    </section>
   );
 }
 
@@ -451,6 +533,7 @@ export default function App() {
   const active = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modal, setModal] = useState<null | 'privacy' | 'terms'>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -461,10 +544,22 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKey);
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen mesh-gradient text-text">
       <div className="fixed left-0 right-0 top-0 z-50">
-        <div className="glass border-b border-divider">
+        <div
+          className={cx(
+            'glass border-b transition-all duration-300 ease-out',
+            scrolled ? 'is-scrolled border-divider shadow-soft' : 'border-divider/50',
+          )}
+        >
           <div className="container-px flex h-[72px] items-center justify-between">
             <button
               type="button"
@@ -555,18 +650,24 @@ export default function App() {
           <div className="container-px py-16 md:py-24">
             <div className="grid items-center gap-16 md:grid-cols-2">
               <div className="relative z-10">
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="animate-hero-in flex flex-wrap items-center gap-3" style={{ animationDelay: '0ms' }}>
                   <Badge>✨ 100% Private & Secure</Badge>
                   <Badge>🟢 Now Serving Customers at Our Gurugram Outlet</Badge>
                 </div>
-                <h1 className="mt-8 font-display text-5xl font-bold leading-[1.1] md:text-7xl">
+                <h1
+                  className="animate-hero-in mt-8 font-display text-5xl font-bold leading-[1.1] md:text-7xl"
+                  style={{ animationDelay: '80ms' }}
+                >
                   Luxury <span className="text-gradient">Jewellery Care</span> at Our Gurugram Outlet
                 </h1>
-                <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-muted md:text-xl">
+                <p
+                  className="animate-hero-in mt-6 max-w-xl text-lg font-medium leading-relaxed text-muted md:text-xl"
+                  style={{ animationDelay: '160ms' }}
+                >
                   Cleaning, polishing, and restoration—expertly handled by master jewelers with
                   secure transit and museum-grade care.
                 </p>
-                <div className="mt-10 flex flex-wrap gap-4">
+                <div className="animate-hero-in mt-10 flex flex-wrap gap-4" style={{ animationDelay: '240ms' }}>
                   <Button onClick={() => scrollToId('visit')}>Schedule Visit</Button>
                   <Button variant="secondary" href={CONFIG.outletMapsUrl}>
                     Get Directions
@@ -624,7 +725,7 @@ export default function App() {
           </div>
         </section>
 
-        <section className="border-t border-divider">
+        <Reveal className="border-t border-divider">
           <div className="container-px py-10 md:py-12">
             <div className="rounded-3xl border border-gold/25 bg-gold/10 p-6 md:p-8">
               <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
@@ -652,9 +753,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="services" className="border-t border-divider">
+        <Reveal id="services" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="Services"
@@ -698,9 +799,9 @@ export default function App() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="how" className="border-t border-divider">
+        <Reveal id="how" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="How it works"
@@ -741,10 +842,10 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
 
 
-        <section id="safety" className="border-t border-divider relative">
+        <Reveal id="safety" className="border-t border-divider relative">
           <Sparkle className="right-[5%] top-[10%]" />
           <div className="container-px py-20 md:py-32">
             <SectionHeader
@@ -773,9 +874,9 @@ export default function App() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="visit" className="border-t border-divider">
+        <Reveal id="visit" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="Visit Us"
@@ -813,9 +914,9 @@ export default function App() {
               </div>
             </Card>
           </div>
-        </section>
+        </Reveal>
 
-        <section className="border-t border-divider">
+        <Reveal className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="App"
@@ -856,9 +957,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section className="border-t border-divider relative">
+        <Reveal className="border-t border-divider relative">
           <Sparkle className="left-[5%] bottom-[15%]" />
           <div className="container-px py-20 md:py-32">
             <div className="relative overflow-hidden rounded-[3rem] border border-gold/30 bg-gradient-to-br from-gold/20 via-surface to-gold/10 p-10 md:p-16">
@@ -891,9 +992,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="faq" className="border-t border-divider">
+        <Reveal id="faq" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="FAQ"
@@ -935,9 +1036,9 @@ export default function App() {
               </div>
             </div>
           </div>
-        </section>
+        </Reveal>
 
-        <section id="download" className="border-t border-divider">
+        <Reveal id="download" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="Download"
@@ -987,7 +1088,7 @@ export default function App() {
 
             <Waitlist />
           </div>
-        </section>
+        </Reveal>
       </main>
 
       <footer className="border-t border-divider">

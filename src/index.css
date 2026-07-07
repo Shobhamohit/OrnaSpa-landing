@@ -15,10 +15,6 @@
   --purpleSoft: 122 90 166;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: rgb(var(--bg));
   color: rgb(var(--text));
@@ -27,6 +23,17 @@ body {
 
 ::selection {
   background: rgba(198, 167, 94, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @layer utilities {
@@ -38,6 +45,12 @@ body {
     background: rgba(252, 251, 247, 0.72);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+  }
+
+  .glass.is-scrolled {
+    background: rgba(252, 251, 247, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .text-gradient {
@@ -86,6 +99,22 @@ body {
 
 .animate-sparkle {
   animation: sparkle 2s infinite ease-in-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-in {
+  animation: fade-in-up 350ms ease-out both;
 }
 
 .mesh-gradient {
