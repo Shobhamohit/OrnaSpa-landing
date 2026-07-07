@@ -5,16 +5,25 @@ type NavItem = { id: string; label: string };
 const CONFIG = {
   brandName: 'OrnaSpa',
   appStoreUrl: '',
-  playStoreUrl: '',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ornaspa.mobile&pcampaignid=web_share',
   supportEmail: 'support@ornaspa.com',
-  coverageCity: 'Your City',
+  coverageCity: 'Gurugram',
   promoCode: 'SPARKLE15',
+  outletAddressLine1: 'Shop No. 25, Ground Floor, Spaze Corporate Park',
+  outletAddressLine2: 'Sector 69, Gurugram, Haryana 122101',
+  outletHours: 'Mon – Sat, 10:00 AM – 8:00 PM',
+  outletPhone: '9811116387',
+  outletPhoneHref: 'tel:+919811116387',
+  outletMapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=' +
+    encodeURIComponent('Spaze Corporate Park, Sector 69, Gurugram, Haryana 122101'),
 } as const;
 
 const NAV: NavItem[] = [
   { id: 'services', label: 'Services' },
   { id: 'how', label: 'How it Works' },
   { id: 'safety', label: 'Safety' },
+  { id: 'visit', label: 'Visit Outlet' },
   { id: 'faq', label: 'FAQ' },
   { id: 'download', label: 'Download' },
 ];
@@ -47,18 +56,18 @@ const SERVICES = [
 
 const HOW_IT_WORKS = [
   {
-    title: 'Book Appointment',
-    description: 'Choose a convenient time for our visit.',
+    title: 'Visit Our Outlet',
+    description: 'Visit our Gurugram outlet with your jewellery for professional inspection and care.',
     icon: CalendarIcon,
   },
   {
-    title: 'Van Arrives',
-    description: 'Our fully-equipped mobile lab comes to your doorstep.',
-    icon: VanIcon,
+    title: 'Inspection & Cleaning',
+    description: 'Our master jewelers inspect, clean, and service your piece on-site.',
+    icon: ToolIcon,
   },
   {
-    title: 'Serviced at Doorstep',
-    description: 'Expert care performed securely right outside your home.',
+    title: 'Pickup From Outlet',
+    description: 'Collect your jewellery, restored to its best, right at our outlet.',
     icon: ShieldIcon,
   },
 ] as const;
@@ -88,9 +97,9 @@ const TRUST_POINTS = [
 
 const FEATURE_BULLETS = [
   'OTP login (fast, passwordless)',
-  'Location + saved addresses',
+  'Browse services & transparent pricing',
   'Upload jewellery photos + describe damage',
-  'Schedule date and time slot',
+  'Schedule your outlet visit—date & time',
   'Track orders and rebook',
 ] as const;
 
@@ -100,8 +109,8 @@ const FAQS = [
     a: 'Yes. Your item is handled with museum-grade security from handoff to return. Exact security details can be shared during booking and may vary by location and item type.',
   },
   {
-    q: 'How does doorstep servicing work?',
-    a: 'You book an appointment in the app. Our team arrives with a fully-equipped mobile lab, and the service is performed securely at your doorstep.',
+    q: 'Do you provide doorstep pickup?',
+    a: 'Not yet. We currently serve customers at our Gurugram outlet. Doorstep pickup and delivery will be introduced soon.',
   },
   {
     q: 'What services do you offer?',
@@ -124,8 +133,8 @@ const FAQS = [
     a: 'No. Payments are processed via trusted partners and we do not store sensitive payment details on our servers.',
   },
   {
-    q: 'Where is OrnaSpa available?',
-    a: `We currently serve ${CONFIG.coverageCity}. Service areas expand over time—check the app for the latest coverage.`,
+    q: 'Where is OrnaSpa located?',
+    a: `Our outlet is located at ${CONFIG.outletAddressLine1}, ${CONFIG.outletAddressLine2}. Visit us in person during business hours—doorstep coverage will expand once that service launches.`,
   },
 ] as const;
 
@@ -135,7 +144,7 @@ const LEGAL = {
     'At OrnaSpa, we respect your privacy and are committed to protecting your personal information.\n\nWe collect basic details such as your name, phone number, address, and order details to provide our services. This information is used only to process your bookings, communicate updates, and improve our service experience.\n\nWe do not sell or share your personal information with third parties for marketing purposes.\n\nYour payment details are processed securely through trusted payment partners, and we do not store sensitive payment information on our servers.\n\nWe may use your data to:\n- Provide and manage your bookings\n- Improve app performance and user experience\n- Send service-related notifications\n\nWe take reasonable steps to protect your data, but no system is 100% secure. By using our app, you agree to this policy.\n\nIf you have any concerns regarding your data, you can contact us through the app support section.',
   termsTitle: 'Terms & Conditions',
   termsBody:
-    'By using the OrnaSpa app, you agree to the following terms and conditions:\n\n1. Service Usage\nYou must provide accurate information while booking services. Incorrect details may lead to delays or cancellation.\n\n2. Jewellery Responsibility\nWhile we take utmost care in handling your jewellery, users are advised to declare accurate details about item condition, material, and value.\n\n3. Pricing\nService charges may vary depending on the type of jewellery, damage, and material. Final pricing will be confirmed before processing.\n\n4. Pickup & Delivery\nUsers must ensure availability at the selected time for pickup and delivery. Missed schedules may lead to rescheduling.\n\n5. Cancellation\nOrders can be cancelled before service processing begins. Once service has started, cancellation may not be possible.\n\n6. Liability\nOrnaSpa is not responsible for pre-existing damage or undisclosed issues in the jewellery.\n\n7. Modifications\nWe reserve the right to update or modify these terms at any time without prior notice.\n\nContinued use of the app means you accept these terms.',
+    'By using the OrnaSpa app, you agree to the following terms and conditions:\n\n1. Service Usage\nYou must provide accurate information while booking services. Incorrect details may lead to delays or cancellation.\n\n2. Jewellery Responsibility\nWhile we take utmost care in handling your jewellery, users are advised to declare accurate details about item condition, material, and value.\n\n3. Pricing\nService charges may vary depending on the type of jewellery, damage, and material. Final pricing will be confirmed before processing.\n\n4. Outlet Visits & Future Pickup/Delivery\nCustomers currently bring their jewellery to our outlet for service. Once doorstep pickup and delivery launches, users will be required to ensure availability at the selected time for pickup and delivery; missed schedules may lead to rescheduling.\n\n5. Cancellation\nOrders can be cancelled before service processing begins. Once service has started, cancellation may not be possible.\n\n6. Liability\nOrnaSpa is not responsible for pre-existing damage or undisclosed issues in the jewellery.\n\n7. Modifications\nWe reserve the right to update or modify these terms at any time without prior notice.\n\nContinued use of the app means you accept these terms.',
 } as const;
 
 function cx(...parts: Array<string | false | null | undefined>) {
@@ -548,21 +557,19 @@ export default function App() {
               <div className="relative z-10">
                 <div className="flex flex-wrap items-center gap-3">
                   <Badge>✨ 100% Private & Secure</Badge>
-                  <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-muted">
-                    {CONFIG.coverageCity}
-                  </span>
+                  <Badge>🟢 Now Serving Customers at Our Gurugram Outlet</Badge>
                 </div>
                 <h1 className="mt-8 font-display text-5xl font-bold leading-[1.1] md:text-7xl">
-                  Luxury <span className="text-gradient">Jewellery Care</span> at Your Doorstep
+                  Luxury <span className="text-gradient">Jewellery Care</span> at Our Gurugram Outlet
                 </h1>
                 <p className="mt-6 max-w-xl text-lg font-medium leading-relaxed text-muted md:text-xl">
                   Cleaning, polishing, and restoration—expertly handled by master jewelers with
                   secure transit and museum-grade care.
                 </p>
                 <div className="mt-10 flex flex-wrap gap-4">
-                  <Button onClick={() => scrollToId('download')}>Start Your Booking</Button>
-                  <Button variant="secondary" onClick={() => scrollToId('how')}>
-                    Learn Our Process
+                  <Button onClick={() => scrollToId('visit')}>Schedule Visit</Button>
+                  <Button variant="secondary" href={CONFIG.outletMapsUrl}>
+                    Get Directions
                   </Button>
                 </div>
                 <div className="mt-12 grid max-w-xl grid-cols-2 gap-4 md:grid-cols-4">
@@ -617,12 +624,42 @@ export default function App() {
           </div>
         </section>
 
+        <section className="border-t border-divider">
+          <div className="container-px py-10 md:py-12">
+            <div className="rounded-3xl border border-gold/25 bg-gold/10 p-6 md:p-8">
+              <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Badge>Now Open</Badge>
+                    <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-muted">
+                      OrnaSpa Experience Outlet — Gurugram
+                    </span>
+                  </div>
+                  <div className="mt-3 text-sm font-semibold text-muted">
+                    {CONFIG.outletAddressLine1}, {CONFIG.outletAddressLine2} · {CONFIG.outletHours}
+                  </div>
+                  <div className="mt-2 text-sm font-semibold text-muted">
+                    We&rsquo;re currently welcoming customers at our Gurugram Experience Outlet.
+                    Doorstep pickup &amp; delivery will be launching soon.
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button href={CONFIG.outletMapsUrl}>Get Directions</Button>
+                  <Button variant="secondary" href={CONFIG.outletPhoneHref}>
+                    Call {CONFIG.outletPhone}
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="services" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="Services"
               title="Care crafted for your most valuable pieces."
-              subtitle="Choose a service, share photos, and book a time slot. Our team arrives with a secure mobile lab—luxury care made effortless."
+              subtitle="Visit our Gurugram outlet and our experts take it from there. Luxury care made effortless."
             />
 
             <div className="mt-12 grid gap-8 md:grid-cols-3">
@@ -652,7 +689,7 @@ export default function App() {
                       {s.description}
                     </div>
                     <div className="mt-auto pt-8">
-                      <Button variant="secondary" className="w-full" onClick={() => scrollToId('download')}>
+                      <Button variant="secondary" className="w-full" onClick={() => scrollToId('visit')}>
                         Book Service
                       </Button>
                     </div>
@@ -667,7 +704,7 @@ export default function App() {
           <div className="container-px py-16">
             <SectionHeader
               eyebrow="How it works"
-              title="Doorstep jewellery servicing—simple, secure, seamless."
+              title="Outlet jewellery servicing—simple, secure, seamless."
               subtitle="A premium flow designed around safety, transparency, and convenience."
             />
 
@@ -697,7 +734,7 @@ export default function App() {
                     100% Secure &amp; Transparent
                   </div>
                   <div className="mt-1 text-sm font-semibold text-muted">
-                    Service performed securely at your doorstep—designed for peace of mind.
+                    Service performed securely at our Gurugram outlet—designed for peace of mind.
                   </div>
                 </div>
                 <Button onClick={() => scrollToId('safety')}>See Safety Details</Button>
@@ -738,6 +775,46 @@ export default function App() {
           </div>
         </section>
 
+        <section id="visit" className="border-t border-divider">
+          <div className="container-px py-16">
+            <SectionHeader
+              eyebrow="Visit Us"
+              title="Visit Our Gurugram Experience Outlet"
+              subtitle="Bring your jewellery directly to our outlet—no pickup required. Doorstep service is launching soon."
+            />
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-3">
+              <MiniStat label="Address" value="Sector 69, Gurugram" />
+              <MiniStat label="Hours" value="Mon–Sat, 10AM–8PM" />
+              <MiniStat label="Phone" value={CONFIG.outletPhone} />
+            </div>
+
+            <Card className="mt-8 p-8">
+              <div className="grid gap-8 md:grid-cols-2 md:items-center">
+                <div>
+                  <div className="text-sm font-extrabold uppercase tracking-[0.2em] text-gold/80">
+                    Address
+                  </div>
+                  <div className="mt-3 text-lg font-bold leading-relaxed text-text">
+                    {CONFIG.outletAddressLine1}
+                    <br />
+                    {CONFIG.outletAddressLine2}
+                  </div>
+                  <div className="mt-6 text-sm font-semibold text-muted">
+                    Open {CONFIG.outletHours}
+                  </div>
+                </div>
+                <div className="flex flex-col gap-4 md:items-end">
+                  <Button href={CONFIG.outletMapsUrl}>Get Directions</Button>
+                  <Button variant="secondary" href={CONFIG.outletPhoneHref}>
+                    Call {CONFIG.outletPhone}
+                  </Button>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </section>
+
         <section className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
@@ -773,7 +850,7 @@ export default function App() {
                 <PhoneMock
                   title="Schedule"
                   subtitle="Choose date & time"
-                  lines={['Saved address', 'Pick slot', 'Track status']}
+                  lines={['Pick outlet visit slot', 'Get reminders', 'Track status']}
                   accent="purple"
                 />
               </div>
@@ -845,6 +922,10 @@ export default function App() {
                     Email us at{' '}
                     <a className="font-extrabold text-text underline decoration-gold/40 underline-offset-4" href={`mailto:${CONFIG.supportEmail}`}>
                       {CONFIG.supportEmail}
+                    </a>{' '}
+                    or call{' '}
+                    <a className="font-extrabold text-text underline decoration-gold/40 underline-offset-4" href={CONFIG.outletPhoneHref}>
+                      {CONFIG.outletPhone}
                     </a>
                   </div>
                 </div>
@@ -901,9 +982,6 @@ export default function App() {
                 <div className="mt-6">
                   <Button href={CONFIG.playStoreUrl}>Get it on Google Play</Button>
                 </div>
-                <div className="mt-3 text-xs font-bold text-muted">
-                  Set CONFIG.playStoreUrl when you have the link.
-                </div>
               </Card>
             </div>
 
@@ -927,8 +1005,16 @@ export default function App() {
                 </div>
               </div>
               <p className="mt-4 text-sm font-semibold leading-relaxed text-muted">
-                OrnaSpa is a doorstep jewellery care and repair service designed to make jewellery maintenance easy, safe, and reliable.
+                OrnaSpa is a premium jewellery care and repair studio. Currently serving customers through our Gurugram outlet—doorstep service launching soon.
               </p>
+              <div className="mt-4 space-y-1 text-sm font-semibold text-muted">
+                <div>{CONFIG.outletAddressLine1}</div>
+                <div>{CONFIG.outletAddressLine2}</div>
+                <div>{CONFIG.outletHours}</div>
+                <a className="block hover:text-text" href={CONFIG.outletPhoneHref}>
+                  {CONFIG.outletPhone}
+                </a>
+              </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4 md:col-span-2 md:grid-cols-3">
@@ -945,7 +1031,7 @@ export default function App() {
                 title="Company"
                 links={[
                   { label: 'Contact', href: `mailto:${CONFIG.supportEmail}` },
-                  { label: 'Coverage', onClick: () => scrollToId('download') },
+                  { label: 'Visit Outlet', onClick: () => scrollToId('visit') },
                 ]}
               />
               <FooterGroup
@@ -1430,3 +1516,4 @@ function AndroidIcon({ className }: { className?: string }) {
     </IconBase>
   );
 }
+
