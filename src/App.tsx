@@ -4,9 +4,11 @@ type NavItem = { id: string; label: string };
 
 const CONFIG = {
   brandName: 'OrnaSpa',
+  legalEntityName: 'GIFTS MOST WANTED',
   appStoreUrl: '',
   playStoreUrl: 'https://play.google.com/store/apps/details?id=com.ornaspa.mobile&pcampaignid=web_share',
   supportEmail: 'ornaspa@gmail.com',
+  websiteUrl: 'https://www.ornaspa.com',
   coverageCity: 'Gurugram',
   promoCode: 'SPARKLE15',
   outletAddressLine1: 'Shop No. 25, Ground Floor, Spaze Corporate Park',
@@ -24,6 +26,7 @@ const NAV: NavItem[] = [
   { id: 'how', label: 'How it Works' },
   { id: 'safety', label: 'Safety' },
   { id: 'visit', label: 'Visit Outlet' },
+  { id: 'about', label: 'About Us' },
   { id: 'faq', label: 'FAQ' },
   { id: 'download', label: 'Download' },
 ];
@@ -136,15 +139,22 @@ const FAQS = [
     q: 'Where is OrnaSpa located?',
     a: `Our outlet is located at ${CONFIG.outletAddressLine1}, ${CONFIG.outletAddressLine2}. Visit us in person during business hours—doorstep coverage will expand once that service launches.`,
   },
+  {
+    q: 'Who operates OrnaSpa?',
+    a: 'OrnaSpa is a brand operated by GIFTS MOST WANTED. GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand, services, and outlet.',
+  },
 ] as const;
 
 const LEGAL = {
+  aboutTitle: 'About Us & Company Information',
+  aboutBody:
+    'Legal Entity:\nGIFTS MOST WANTED\n\nBrand / Trade Name:\nOrnaSpa\n\nRelationship:\nOrnaSpa is a brand operated by GIFTS MOST WANTED. GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand.\n\nOfficial Website:\nhttps://www.ornaspa.com\n\nOutlet & Headquarters Address:\nShop No. 25, Ground Floor, Spaze Corporate Park, Sector 69, Gurugram, Haryana 122101, India\n\nContact Information:\nEmail: ornaspa@gmail.com\nPhone: +91 9811116387\nBusiness Hours: Mon – Sat, 10:00 AM – 8:00 PM\n\nBusiness Overview:\nOrnaSpa is a premium jewellery care and repair studio providing cleaning, polishing, and restoration services. All operations, digital platforms, and customer services under the OrnaSpa brand are operated by the legal entity GIFTS MOST WANTED.\n\n© 2026 GIFTS MOST WANTED. All rights reserved.',
   privacyTitle: 'Privacy Policy',
   privacyBody:
-    'At OrnaSpa, we respect your privacy and are committed to protecting your personal information.\n\nWe collect basic details such as your name, phone number, address, and order details to provide our services. This information is used only to process your bookings, communicate updates, and improve our service experience.\n\nWe do not sell or share your personal information with third parties for marketing purposes.\n\nYour payment details are processed securely through trusted payment partners, and we do not store sensitive payment information on our servers.\n\nWe may use your data to:\n- Provide and manage your bookings\n- Improve app performance and user experience\n- Send service-related notifications\n\nWe take reasonable steps to protect your data, but no system is 100% secure. By using our app, you agree to this policy.\n\nIf you have any concerns regarding your data, you can contact us through the app support section.',
+    'OrnaSpa is a brand operated by GIFTS MOST WANTED ("we", "us", or "our"). GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand, services, mobile application, and website (https://www.ornaspa.com).\n\nAt OrnaSpa, operated by GIFTS MOST WANTED, we respect your privacy and are committed to protecting your personal information.\n\n1. Information We Collect\nWe collect basic details such as your name, phone number, address, and order details to provide our services. This information is used only to process your bookings, communicate updates, and improve our service experience.\n\n2. Information Sharing\nWe do not sell or share your personal information with third parties for marketing purposes.\n\n3. Payment Security\nYour payment details are processed securely through trusted payment partners, and we do not store sensitive payment information on our servers.\n\n4. How We Use Data\nWe may use your data to:\n- Provide and manage your bookings\n- Improve app performance and user experience\n- Send service-related notifications\n\n5. Data Protection\nWe take reasonable steps to protect your data, but no system is 100% secure. By using our website or app, you agree to this policy.\n\n6. Legal Entity & Inquiries\nLegal Entity: GIFTS MOST WANTED\nBrand: OrnaSpa\nWebsite: https://www.ornaspa.com\nAddress: Shop No. 25, Ground Floor, Spaze Corporate Park, Sector 69, Gurugram, Haryana 122101\nEmail: ornaspa@gmail.com\nPhone: +91 9811116387\n\nIf you have any questions or concerns regarding your data, you can contact GIFTS MOST WANTED / OrnaSpa support at ornaspa@gmail.com.',
   termsTitle: 'Terms & Conditions',
   termsBody:
-    'By using the OrnaSpa app, you agree to the following terms and conditions:\n\n1. Service Usage\nYou must provide accurate information while booking services. Incorrect details may lead to delays or cancellation.\n\n2. Jewellery Responsibility\nWhile we take utmost care in handling your jewellery, users are advised to declare accurate details about item condition, material, and value.\n\n3. Pricing\nService charges may vary depending on the type of jewellery, damage, and material. Final pricing will be confirmed before processing.\n\n4. Outlet Visits & Future Pickup/Delivery\nCustomers currently bring their jewellery to our outlet for service. Once doorstep pickup and delivery launches, users will be required to ensure availability at the selected time for pickup and delivery; missed schedules may lead to rescheduling.\n\n5. Cancellation\nOrders can be cancelled before service processing begins. Once service has started, cancellation may not be possible.\n\n6. Liability\nOrnaSpa is not responsible for pre-existing damage or undisclosed issues in the jewellery.\n\n7. Modifications\nWe reserve the right to update or modify these terms at any time without prior notice.\n\nContinued use of the app means you accept these terms.',
+    'These Terms and Conditions govern your use of the OrnaSpa website (https://www.ornaspa.com) and mobile application.\n\nOrnaSpa is a brand operated by GIFTS MOST WANTED ("we", "us", or "our"). GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand, services, and outlet. By using the OrnaSpa website or mobile application, you agree to the following terms:\n\n1. Legal Entity & Operator\nLegal Entity: GIFTS MOST WANTED\nBrand / Trade Name: OrnaSpa\nRelationship: OrnaSpa is a brand operated by GIFTS MOST WANTED.\nWebsite: https://www.ornaspa.com\n\n2. Service Usage\nYou must provide accurate information while booking services. Incorrect details may lead to delays or cancellation.\n\n3. Jewellery Responsibility\nWhile we take utmost care in handling your jewellery, users are advised to declare accurate details about item condition, material, and value.\n\n4. Pricing\nService charges may vary depending on the type of jewellery, damage, and material. Final pricing will be confirmed before processing.\n\n5. Outlet Visits & Future Pickup/Delivery\nCustomers currently bring their jewellery to our outlet for service. Once doorstep pickup and delivery launches, users will be required to ensure availability at the selected time for pickup and delivery; missed schedules may lead to rescheduling.\n\n6. Cancellation\nOrders can be cancelled before service processing begins. Once service has started, cancellation may not be possible.\n\n7. Liability\nGIFTS MOST WANTED (operating the brand OrnaSpa) is not responsible for pre-existing damage or undisclosed issues in the jewellery.\n\n8. Modifications\nWe reserve the right to update or modify these terms at any time without prior notice.\n\nContinued use of the website or app means you accept these terms.\n\nContact: ornaspa@gmail.com',
 } as const;
 
 function cx(...parts: Array<string | false | null | undefined>) {
@@ -532,8 +542,26 @@ export default function App() {
   const sectionIds = useMemo(() => NAV.map((n) => n.id), []);
   const active = useActiveSection(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modal, setModal] = useState<null | 'privacy' | 'terms'>(null);
+  const [modal, setModal] = useState<null | 'privacy' | 'terms' | 'about'>(null);
   const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.toLowerCase();
+      if (hash === '#about') {
+        setTimeout(() => scrollToId('about'), 100);
+      } else if (hash === '#privacy') {
+        setModal('privacy');
+      } else if (hash === '#terms') {
+        setModal('terms');
+      } else if (hash === '#company' || hash === '#company-info') {
+        setModal('about');
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -994,6 +1022,122 @@ export default function App() {
           </div>
         </Reveal>
 
+        <Reveal id="about" className="border-t border-divider">
+          <div className="container-px py-16">
+            <SectionHeader
+              eyebrow="Company Information"
+              title="About OrnaSpa & Legal Ownership"
+              subtitle="OrnaSpa is a brand operated by GIFTS MOST WANTED. GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand."
+            />
+
+            <div className="mt-10 grid gap-8 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <Card className="p-8">
+                  <div className="flex items-center justify-between gap-4 border-b border-divider pb-4">
+                    <div>
+                      <div className="text-xs font-black uppercase tracking-[0.2em] text-gold/80">
+                        Official Entity Record
+                      </div>
+                      <div className="mt-1 text-base font-extrabold text-text">
+                        Legal Entity & Operating Structure
+                      </div>
+                    </div>
+                    <span className="inline-flex items-center rounded-full bg-gold/15 px-3 py-1 text-xs font-bold text-text ring-1 ring-gold/30">
+                      Verified
+                    </span>
+                  </div>
+
+                  <div className="mt-6 space-y-4">
+                    <div className="grid grid-cols-1 gap-1 border-b border-divider/60 pb-3 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Legal Entity</span>
+                      <span className="text-sm font-extrabold text-text sm:col-span-2 sm:text-base">
+                        {CONFIG.legalEntityName}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1 border-b border-divider/60 pb-3 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Brand / Trade Name</span>
+                      <span className="text-sm font-extrabold text-text sm:col-span-2 sm:text-base">
+                        {CONFIG.brandName}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1 border-b border-divider/60 pb-3 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Relationship</span>
+                      <span className="text-sm font-semibold leading-relaxed text-text sm:col-span-2">
+                        OrnaSpa is a brand operated by GIFTS MOST WANTED. GIFTS MOST WANTED is the legal entity responsible for the operation and management of the OrnaSpa brand.
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1 border-b border-divider/60 pb-3 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Official Website</span>
+                      <span className="text-sm font-semibold text-text sm:col-span-2">
+                        <a href={CONFIG.websiteUrl} className="text-text underline decoration-gold/50 hover:text-gold">
+                          {CONFIG.websiteUrl}
+                        </a>
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1 border-b border-divider/60 pb-3 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Outlet & Office</span>
+                      <span className="text-sm font-semibold leading-relaxed text-muted sm:col-span-2">
+                        {CONFIG.outletAddressLine1}, {CONFIG.outletAddressLine2}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1 sm:grid-cols-3 sm:gap-4">
+                      <span className="text-xs font-bold uppercase tracking-wider text-muted">Contact Email</span>
+                      <span className="text-sm font-semibold text-muted sm:col-span-2">
+                        <a href={`mailto:${CONFIG.supportEmail}`} className="hover:text-text">
+                          {CONFIG.supportEmail}
+                        </a>
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              <div className="flex flex-col gap-6 lg:col-span-5">
+                <Card className="flex flex-1 flex-col justify-between p-8">
+                  <div>
+                    <div className="text-xs font-black uppercase tracking-[0.2em] text-gold/80">
+                      About The Brand
+                    </div>
+                    <h3 className="mt-3 font-display text-2xl font-bold text-text">
+                      Professional Jewellery Care by {CONFIG.legalEntityName}
+                    </h3>
+                    <p className="mt-4 text-sm font-semibold leading-relaxed text-muted">
+                      OrnaSpa is operated by GIFTS MOST WANTED to provide specialized jewellery cleaning, restoration, and repair. Customers experience master craftsmanship, rigorous security protocols, and upfront transparent pricing.
+                    </p>
+                  </div>
+
+                  <div className="mt-6 border-t border-divider/60 pt-6">
+                    <div className="text-xs font-bold text-muted">
+                      Legal inquiries & policies:
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setModal('about')}
+                        className="rounded-2xl border border-divider bg-surface px-4 py-2.5 text-xs font-extrabold text-text shadow-soft hover:border-gold/50 hover:bg-gold/10 transition"
+                      >
+                        Company Information Modal
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setModal('terms')}
+                        className="rounded-2xl border border-divider bg-surface px-4 py-2.5 text-xs font-extrabold text-text shadow-soft hover:border-gold/50 hover:bg-gold/10 transition"
+                      >
+                        Terms & Conditions
+                      </button>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
         <Reveal id="faq" className="border-t border-divider">
           <div className="container-px py-16">
             <SectionHeader
@@ -1108,6 +1252,14 @@ export default function App() {
               <p className="mt-4 text-sm font-semibold leading-relaxed text-muted">
                 OrnaSpa is a premium jewellery care and repair studio. Currently serving customers through our Gurugram outlet—doorstep service launching soon.
               </p>
+              <div className="mt-4 rounded-2xl border border-divider/80 bg-surface/70 p-3.5">
+                <div className="text-[11px] font-black uppercase tracking-wider text-gold/90">
+                  Legal Ownership
+                </div>
+                <div className="mt-1 text-xs font-bold text-text">
+                  OrnaSpa is a brand operated by GIFTS MOST WANTED.
+                </div>
+              </div>
               <div className="mt-4 space-y-1 text-sm font-semibold text-muted">
                 <div>{CONFIG.outletAddressLine1}</div>
                 <div>{CONFIG.outletAddressLine2}</div>
@@ -1131,26 +1283,42 @@ export default function App() {
               <FooterGroup
                 title="Company"
                 links={[
-                  { label: 'Contact', href: `mailto:${CONFIG.supportEmail}` },
+                  { label: 'About Us', onClick: () => scrollToId('about') },
+                  { label: 'Company Info', onClick: () => setModal('about') },
                   { label: 'Visit Outlet', onClick: () => scrollToId('visit') },
+                  { label: 'Contact', href: `mailto:${CONFIG.supportEmail}` },
                 ]}
               />
               <FooterGroup
                 title="Legal"
                 links={[
-                  { label: 'Privacy', onClick: () => setModal('privacy') },
-                  { label: 'Terms', onClick: () => setModal('terms') },
+                  { label: 'Company Information', onClick: () => setModal('about') },
+                  { label: 'Privacy Policy', onClick: () => setModal('privacy') },
+                  { label: 'Terms & Conditions', onClick: () => setModal('terms') },
                 ]}
               />
             </div>
           </div>
 
-          <div className="mt-12 flex flex-col gap-3 border-t border-divider pt-8 text-sm font-semibold text-muted md:flex-row md:items-center md:justify-between">
-            <div>© {new Date().getFullYear()} {CONFIG.brandName}. All rights reserved.</div>
-            <div className="flex items-center gap-4">
+          <div className="mt-12 flex flex-col gap-4 border-t border-divider pt-8 text-sm font-semibold text-muted md:flex-row md:items-center md:justify-between">
+            <div className="space-y-1">
+              <div className="font-bold text-text">© 2026 GIFTS MOST WANTED. All rights reserved.</div>
+              <div className="text-xs text-muted">
+                OrnaSpa is a brand operated by GIFTS MOST WANTED.
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
               <a className="hover:text-text" href={`mailto:${CONFIG.supportEmail}`}>
                 {CONFIG.supportEmail}
               </a>
+              <span className="h-1 w-1 rounded-full bg-divider" />
+              <button
+                type="button"
+                className="hover:text-text"
+                onClick={() => setModal('about')}
+              >
+                About & Legal Info
+              </button>
               <span className="h-1 w-1 rounded-full bg-divider" />
               <a className="hover:text-text" href="#top" onClick={(e) => { e.preventDefault(); scrollToId('top'); }}>
                 Back to top
@@ -1160,6 +1328,13 @@ export default function App() {
         </div>
       </footer>
 
+      <Modal
+        open={modal === 'about'}
+        title={LEGAL.aboutTitle}
+        onClose={() => setModal(null)}
+      >
+        {LEGAL.aboutBody}
+      </Modal>
       <Modal
         open={modal === 'privacy'}
         title={LEGAL.privacyTitle}
